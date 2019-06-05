@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    publicPath: "/"
+    publicPath: "/" // its redirect all server request to index page
   },
   devServer: {
     historyApiFallback: true
