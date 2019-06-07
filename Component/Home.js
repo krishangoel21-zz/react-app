@@ -1,36 +1,80 @@
 import React from "react";
+import MyLoader from "./css";
+import Loader from "react-loader-spinner";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "krishan"
+      data: [],
+      isloading: false,
+      error: null
     };
   }
 
-  //getDerivedStateFromProps lifecycle called before render method with two parameter props and state if
-  // there is any change in props and state is called again,
-
-  static getDerivedStateFromProps(props, state) {
-    console.warn("getDerivedStateFromProps is called ");
-    console.warn("state", state);
-    return null;
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then(
+        result => {
+          this.interval = setInterval(() => {
+            this.setState({
+              isloading: true,
+              data: result
+            });
+          }, 2000);
+        },
+        error => {
+          this.setState({
+            isloading: true,
+            error
+          });
+        }
+      );
   }
 
-  //forceUpdate is use to re-render the dom on changing props or state
-  handleClick = () => {
-    this.forceUpdate(() => {
-      console.warn("updating...");
-      this.setState({ name: "goel" });
-    });
-  };
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   render() {
-    console.warn("render is called ");
-    return (
-      <div>
-        <button onClick={this.handleClick}>Click Me</button>
-      </div>
-    );
+    const { data, isloading, error } = this.state;
+    if (error) {
+      return <div>having error</div>;
+    } else if (!isloading) {
+      return (
+        <MyLoader>
+          <Loader type="Circles" color="#" height={100} width={100} />
+        </MyLoader>
+      );
+    } else {
+      return (
+        <table border="1px">
+          <tbody>
+            <tr>
+              <th>SR.NO</th>
+              <th>NAME</th>
+              <th>USERNAME</th>
+              <th>EMAIL</th>
+              <th>WEBSITE</th>
+              <th>CITY</th>
+              <th>PHONE</th>
+            </tr>
+            {data.map(d => (
+              <tr key={d.id}>
+                <td>{d.id}</td>
+                <td>{d.name}</td>
+                <td>{d.username}</td>
+                <td>{d.email}</td>
+                <td>{d.website}</td>
+                <td>{d.address.city}</td>
+                <td>{d.phone}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }
   }
 }
 

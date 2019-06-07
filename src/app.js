@@ -1,20 +1,13 @@
 import React from "react";
-/*import Home from "../Component/Home";*/
-
-/* import  ShouldUpdate  from "../Component/ShouldUpdate"; */
+import Home from "../Component/Home";
 
 class App extends React.Component {
-  componentDidMount() {
-    console.warn("Fetching data...");
-  }
-
   render() {
-    console.warn("rendering...");
     return (
       <div>
-        THis is new Component
-        {/* <Home data="king" /> */}
-        {/*  <ShouldUpdate /> */}
+        <h3>THis is new example of componentDidMount() Lifecyle method.</h3>
+        <p>This Lifecyle method best place to fetch data from the server.</p>
+        <Home />
       </div>
     );
   }
