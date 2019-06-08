@@ -49,30 +49,32 @@ class Home extends React.Component {
       );
     } else {
       return (
-        <table border="1px">
-          <tbody>
-            <tr>
-              <th>SR.NO</th>
-              <th>NAME</th>
-              <th>USERNAME</th>
-              <th>EMAIL</th>
-              <th>WEBSITE</th>
-              <th>CITY</th>
-              <th>PHONE</th>
-            </tr>
-            {data.map(d => (
-              <tr key={d.id}>
-                <td>{d.id}</td>
-                <td>{d.name}</td>
-                <td>{d.username}</td>
-                <td>{d.email}</td>
-                <td>{d.website}</td>
-                <td>{d.address.city}</td>
-                <td>{d.phone}</td>
+        <div>
+          <table border="1px">
+            <tbody>
+              <tr>
+                <th>SR.NO</th>
+                <th>NAME</th>
+                <th>USERNAME</th>
+                <th>EMAIL</th>
+                <th>WEBSITE</th>
+                <th>CITY</th>
+                <th>PHONE</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+              {data.map(d => (
+                <tr key={d.id}>
+                  <td>{d.id}</td>
+                  <td>{d.name}</td>
+                  <td>{d.username}</td>
+                  <td>{d.email}</td>
+                  <td>{d.website}</td>
+                  <td>{d.address.city}</td>
+                  <td>{d.phone}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       );
     }
   }

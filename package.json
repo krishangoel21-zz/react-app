@@ -13,9 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "bootstrap": "^4.3.1",
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
     "react": "^16.8.6",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.8.6",
     "react-loader-spinner": "^2.3.0",
     "style-loader": "^0.23.1",
