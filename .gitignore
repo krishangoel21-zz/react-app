@@ -1,0 +1,17 @@
+node_modules
+dist
+.cache
+npm-debug.log
+*.sublime*
+build
+.env
+internal
+.DS_Store
+stats.json
+sshuttle.pid
+*.log
+.idea/
+.vscode/launch.json
+jsconfig.json
+.idea/*
+build
