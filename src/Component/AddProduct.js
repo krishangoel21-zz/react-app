@@ -44,8 +44,8 @@ class AddProduct extends React.Component {
                 type="text"
                 className="form-control"
                 placeholder="Enter Product Name"
-                name="product_name"
-                value={this.state.product_name || ""}
+                name="productName"
+                value={this.state.productName || ""}
                 onChange={this.handleChange}
               />
             </div>
@@ -88,8 +88,8 @@ class AddProduct extends React.Component {
                 type="text"
                 className="form-control"
                 placeholder="Enter Material"
-                name="product_material"
-                value={this.state.product_material || ""}
+                name="productMaterial"
+                value={this.state.productMaterial || ""}
                 onChange={this.handleChange}
               />
             </div>

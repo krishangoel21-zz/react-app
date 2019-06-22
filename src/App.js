@@ -1,7 +1,8 @@
 import React from "react";
-import FetchProduct from "./Component/FetchProduct";
 import Header from "./Component/Header";
+import FetchProduct from "./Component/FetchProduct";
 import AddProduct from "./Component/AddProduct";
+import "./Component/Redux/index";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,25 +16,23 @@ class App extends React.Component {
     };
   }
 
-  onFormSubmit = b => {
+  onFormSubmit = data => {
     let apiUrl;
-    let method;
     if (this.state.isEditProduct) {
-      apiUrl = "http://localhost:3004/products/" + b.id;
-      method = "PUT";
+      apiUrl = "http://localhost:6060/api/" + data.id;
     } else {
-      apiUrl = "http://localhost:3004/products";
-      method = "POST";
+      apiUrl = "http://localhost:6060/api/create";
     }
     const options = {
-      method,
+      method: "POST",
+      body: JSON.stringify(data),
       cache: "no-cache",
-      mode: "cors",
-      body: JSON.stringify(b),
-      headers: { "Content-Type": "application/json" }
+      headers: {
+        "Content-Type": "application/json"
+      }
     };
     fetch(apiUrl, options)
-      .then(res => res.json())
+      .then(result => result.json())
       .then(
         result => {
           this.setState({
@@ -49,7 +48,7 @@ class App extends React.Component {
   };
 
   onEditProduct = pId => {
-    const api = "http://localhost:3004/products/" + pId;
+    const api = "http://localhost:6060/api/" + pId;
     const options = {
       method: "GET"
     };
@@ -58,7 +57,7 @@ class App extends React.Component {
       .then(
         result => {
           this.setState({
-            product: result,
+            product: result[0],
             isAddProduct: true,
             isEditProduct: true
           });
