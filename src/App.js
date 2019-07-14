@@ -2,7 +2,10 @@ import React from "react";
 import Header from "./Component/Header";
 import FetchProduct from "./Component/FetchProduct";
 import AddProduct from "./Component/AddProduct";
-import "./Component/Redux/index";
+//import "./Component/Redux/singleReducers";
+import "./Component/Redux/middleware";
+/* import { Provider } from "react-redux";
+import store from "./store"; */
 
 class App extends React.Component {
   constructor(props) {
@@ -96,6 +99,7 @@ class App extends React.Component {
     }
 
     return (
+      /*       <Provider store={store}> */
       <div>
         <Header />
         <div className="container">
@@ -112,6 +116,7 @@ class App extends React.Component {
           {!isAddProduct && <FetchProduct onEditProduct={this.onEditProduct} />}
         </div>
       </div>
+      /*     </Provider> */
     );
   }
 }

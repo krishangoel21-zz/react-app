@@ -1,4 +1,4 @@
-let apiUrls = {
+/* let apiUrls = {
   createRecord() {
     return {
       url: `http://localhost:6060/api/create`
@@ -16,4 +16,4 @@ let apiUrls = {
   }
 };
 
-export default apiUrls;
+export default apiUrls; */

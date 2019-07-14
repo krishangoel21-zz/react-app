@@ -1,29 +1,31 @@
 import React from "react";
 import Pagination from "./Pagination";
+/* import { connect } from "react-redux";
+import { getProducts } from "./action/postAction"; */
+
 class FetchProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
       bulkDelete: [],
       isLoading: false,
       error: null,
       isDeleteAll: false,
-      checked: false
+      checked: false,
+      products: []
     };
   }
 
   componentDidMount() {
+    //this.props.dispatch(getProducts);
     fetch("http://localhost:6060/api")
       .then(res => res.json())
       .then(
         result => {
-          /*           this.interval = setInterval(() => { */
           this.setState({
             isLoading: true,
             products: result
           });
-          /*    }, 1000); */
         },
         error => {
           this.setState({
@@ -33,10 +35,6 @@ class FetchProduct extends React.Component {
         }
       );
   }
-
-  /*   componentWillUnmount() {
-    clearInterval(this.interval);
-  } */
 
   handleDelete = pId => {
     const { products } = this.state;
@@ -106,7 +104,8 @@ class FetchProduct extends React.Component {
   };
 
   render() {
-    const { products, isLoading, error, isDeleteAll } = this.state;
+    const { isLoading, error, isDeleteAll, products } = this.state;
+    //const { products } = this.props;
     if (error) {
       return <div>Having error</div>;
     } else if (!isLoading) {
@@ -197,5 +196,11 @@ class FetchProduct extends React.Component {
     }
   }
 }
+
+/* export default connect(store => {
+  return {
+    products: store.products
+  };
+})(FetchProduct); */
 
 export default FetchProduct;
